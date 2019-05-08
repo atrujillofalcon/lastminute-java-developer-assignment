@@ -11,6 +11,6 @@ public interface FlightPriceRepository {
 
     Stream<FlightPriceEntryDTO> getAllFlightPrices();
 
-    Stream<FlightPriceEntryDTO> findFlightPricesByCode();
+    FlightPriceEntryDTO findFlightPricesByCode(String flightCode);
 
 }
