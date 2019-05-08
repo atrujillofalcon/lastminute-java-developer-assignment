@@ -1,5 +1,17 @@
 # Flight search
 
+## Solution
+
+I have created a simple REST service to, based on the required parameters, be able to calculate the flights with their respective prices.
+
+To start the service you must execute the following command:
+
+* ./gradlew bootRun
+
+I have added a POSTAM  collection to test the examples. Due to time constraints I haven't added the unit tests yet, although I will upload them this week. I consider the tests a fundamental requirement for a good code.
+
+Postman path: src/main/resources/postman/LASTMINUTE.postman_collection.json
+
 ## Problem
 
 Your goal is to implement a simple flight search.
@@ -81,3 +93,13 @@ The goal is to provide us with a full understanding of your coding style and ski
 * CDG -> FRA
 
   no flights available
+  
+## Solution
+
+I have created a simple REST service to, based on the required parameters, be able to calculate the flights with their respective prices.
+
+To start the service you must execute the following command:
+
+* ./gradlew bootRun
+
+I have added a POSTAM collection to test the examples. Due to time constraints I haven't added the unit tests yet, although I will upload them this week. I consider the tests a fundamental requirement for a good code.
