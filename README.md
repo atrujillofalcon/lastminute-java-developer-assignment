@@ -12,6 +12,30 @@ I have added a POSTAM  collection to test the examples. Due to time constraints 
 
 Postman path: src/main/resources/postman/LASTMINUTE.postman_collection.json
 
+Example request:
+
+    curl -X GET 'http://localhost:8080/flight/search?origin=AMS&destination=FRA&departureDate=01/08/2019&totalPassengers=1'
+
+
+Response:
+
+    {
+    "results": [
+        {
+            "flightCode": "TK2372",
+            "totalPrice": "157,60 €"
+        },
+        {
+            "flightCode": "TK2659",
+            "totalPrice": "198,40 €"
+        },
+        {
+            "flightCode": "LH5909",
+            "totalPrice": "90,40 €"
+        }
+    ]
+}
+
 ## Problem
 
 Your goal is to implement a simple flight search.
