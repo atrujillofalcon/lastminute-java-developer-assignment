@@ -13,6 +13,8 @@ import java.time.LocalDate;
 @Builder
 public class FlightPriceCalculatorServiceIDTO {
 
+    private int passengers;
+
     private String flightCode;
 
     private CurrencyType fromCurrency;

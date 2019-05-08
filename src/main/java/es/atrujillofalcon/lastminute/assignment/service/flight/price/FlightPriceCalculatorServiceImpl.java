@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 
 @Service
 public class FlightPriceCalculatorServiceImpl implements FlightPriceCalculatorService {
@@ -20,7 +21,7 @@ public class FlightPriceCalculatorServiceImpl implements FlightPriceCalculatorSe
 
         Double flightBasePrice = flightPriceRepository.findFlightPricesByCode(idto.getFlightCode()).getBasePrice();
 
-        Double calculatedPrice = flightBasePrice * getPricePercentageDependingOnDepartureDay(idto.getDepartureDate());
+        Double calculatedPrice = idto.getPassengers() * (flightBasePrice * getPricePercentageDependingOnDepartureDay(idto.getDepartureDate()));
 
         return FlightPriceCalculatorServiceODTO.builder()
                 .calculatedPrice(calculatedPrice)
@@ -31,7 +32,7 @@ public class FlightPriceCalculatorServiceImpl implements FlightPriceCalculatorSe
 
     private Double getPricePercentageDependingOnDepartureDay(LocalDate departureDate) {
 
-        int dayDiff = Period.between(LocalDate.now(), departureDate).getDays();
+        long dayDiff = ChronoUnit.DAYS.between(LocalDate.now(),departureDate);
 
         if (dayDiff < 3)
             return 1.5D;

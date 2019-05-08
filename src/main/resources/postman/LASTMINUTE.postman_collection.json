@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "2fe1674b-f217-4758-8509-74d213f77857",
+		"name": "LASTMINUTE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Flight Search Example 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/flight/search?origin=AMS&destination=FRA&departureDate=01/08/2019&totalPassengers=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flight",
+						"search"
+					],
+					"query": [
+						{
+							"key": "origin",
+							"value": "AMS"
+						},
+						{
+							"key": "destination",
+							"value": "FRA"
+						},
+						{
+							"key": "departureDate",
+							"value": "01/08/2019"
+						},
+						{
+							"key": "totalPassengers",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flight Search Example 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/flight/search?origin=LHR&destination=IST&departureDate=23/05/2019&totalPassengers=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flight",
+						"search"
+					],
+					"query": [
+						{
+							"key": "origin",
+							"value": "LHR"
+						},
+						{
+							"key": "destination",
+							"value": "IST"
+						},
+						{
+							"key": "departureDate",
+							"value": "23/05/2019"
+						},
+						{
+							"key": "totalPassengers",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flight Search Example 3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/flight/search?origin=BCN&destination=MAD&departureDate=10/05/2019&totalPassengers=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"flight",
+						"search"
+					],
+					"query": [
+						{
+							"key": "origin",
+							"value": "BCN"
+						},
+						{
+							"key": "destination",
+							"value": "MAD"
+						},
+						{
+							"key": "departureDate",
+							"value": "10/05/2019"
+						},
+						{
+							"key": "totalPassengers",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

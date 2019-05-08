@@ -9,6 +9,7 @@ import es.atrujillofalcon.lastminute.assignment.service.flight.routes.dto.Flight
 import es.atrujillofalcon.lastminute.assignment.type.CurrencyType;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +35,7 @@ public class FlightControllerServiceTransformerImpl implements FlightControllerS
                 .flightCode(code)
                 .fromCurrency(CurrencyType.EUR)
                 .toCurrency(CurrencyType.EUR)
+                .passengers(request.getTotalPassengers())
                 .build();
 
     }
@@ -56,7 +58,7 @@ public class FlightControllerServiceTransformerImpl implements FlightControllerS
 
         return FlightSearchResult.builder()
                 .flightCode(serviceODTO.getFlightCode())
-                .totalPrice(serviceODTO.getCalculatedPrice() + " " + serviceODTO.getCurrency().getSymbol())
+                .totalPrice(String.format( "%.2f", serviceODTO.getCalculatedPrice()) + " " + serviceODTO.getCurrency().getSymbol())
                 .build();
 
     }
