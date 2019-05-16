@@ -1,31 +1,25 @@
 package es.atrujillofalcon.lastminute.assignment.test.cucumber;
 
-import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.api.junit.Cucumber;
 import es.atrujillofalcon.lastminute.assignment.FlightSearcherApplication;
 import es.atrujillofalcon.lastminute.assignment.controller.dto.FlightSearchRequest;
 import es.atrujillofalcon.lastminute.assignment.controller.dto.FlightSearchResponse;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.*;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
 /**
  * @author Arnaldo Trujillo
  */
-@RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources")
 @SpringBootTest(classes = FlightSearcherApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @ContextConfiguration
 public class FlightSearchCucumberStep {
@@ -35,12 +29,11 @@ public class FlightSearchCucumberStep {
     @When("^the client calls /search flights of (\\d+) with origin in (.*) and destination in (.*) for departure date (.*)")
     public void the_client_issues_GET_version(int totalPassengers, String origin, String destination, String departureDate) throws Throwable {
 
-        FlightSearchRequest request = FlightSearchRequest.builder()
-                .departureDate(LocalDate.parse(departureDate, DateTimeFormatter.ofPattern("dd/MM/yyyy")))
-                .destination(destination)
-                .origin(origin)
-                .totalPassengers(totalPassengers)
-                .build();
+        FlightSearchRequest request = new FlightSearchRequest();
+        request.setDepartureDate(LocalDate.parse(departureDate, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        request.setDestination(destination);
+        request.setOrigin(origin);
+        request.setTotalPassengers(totalPassengers);
 
         HttpHeaders headers = new HttpHeaders();
         headers.put(HttpHeaders.CONTENT_TYPE, Collections.singletonList("application/json"));
@@ -50,7 +43,13 @@ public class FlightSearchCucumberStep {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        searchResponse = restTemplate.exchange("http://localhost:8080/flight/search", HttpMethod.GET, flightSearcHttpEntity, FlightSearchResponse.class);
+        try {
+            searchResponse = restTemplate.exchange("http://localhost:8080/flight/search", HttpMethod.GET, flightSearcHttpEntity, FlightSearchResponse.class);
+
+        } catch (HttpClientErrorException e) {
+            System.out.println(e.getResponseBodyAsString());
+            throw e;
+        }
     }
 
     @Then("^the client receives status code of (\\d+)$")
